@@ -6,12 +6,13 @@ server:
     max-threads: 1000
 eureka:
   instance:
-    hostname: 192.168.11.85
+    hostname: 127.0.0.1
+    preferIpAddress: true
   client:
-    register-with-eureka: false
+    register-with-eureka: true
     fetch-registry: false
     serviceUrl:
-      defaultZone: http://192.168.11.85:8761/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
   server:
     #eureka server刷新readCacheMap的时间，注意，client读取的是readCacheMap，这个时间决定了多久会把readWriteCacheMap的缓存更新到readCacheMap上
